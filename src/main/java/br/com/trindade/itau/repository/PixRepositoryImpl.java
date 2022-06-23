@@ -29,7 +29,7 @@ public class PixRepositoryImpl implements PixRepository {
 
     @Override
     public Pix update(Pix body) {
-        if(!body.isActive()){
+        if (!body.isActive()) {
             return null;
         }
         return this.mongoRepository.save(body);
