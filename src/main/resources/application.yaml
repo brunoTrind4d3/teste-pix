@@ -1,0 +1,12 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      user: southsystem
+      password: teste
+      uri: mongodb+srv://southsystem:teste@southsystem-application.bvk8x.mongodb.net/?retryWrites=true&w=majority
+      database: southsystem
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
