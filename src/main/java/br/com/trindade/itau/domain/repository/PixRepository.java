@@ -10,6 +10,7 @@ public interface PixRepository {
     public Pix create(Pix body);
     public Pix update(Pix body);
     public Pix findById (String id);
+    public Pix inactive(String id);
     public Pix findByKeyValue (String value);
     public List<Pix> findByFilters(SearchFilters filters);
     public List<Pix> findByTaxId(String taxId);

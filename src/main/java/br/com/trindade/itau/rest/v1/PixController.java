@@ -3,6 +3,7 @@ package br.com.trindade.itau.rest.v1;
 import br.com.trindade.itau.domain.entity.BusinessError;
 import br.com.trindade.itau.domain.entity.Pix;
 import br.com.trindade.itau.domain.exception.BusinessErrorException;
+import br.com.trindade.itau.domain.exception.NotFoundException;
 import br.com.trindade.itau.domain.service.PixService;
 import br.com.trindade.itau.rest.v1.mapper.PixMapper;
 import br.com.trindade.itau.rest.v1.mapper.PixResponseMapper;
@@ -29,11 +30,23 @@ public class PixController {
         return PixResponseMapper.from(this.pixService.create(PixMapper.from(body)));
     }
 
+    @DeleteMapping("/inactive/{id}")
+    public PixResponse create(@Valid @PathVariable String id) throws NotFoundException {
+        return PixResponseMapper.from(this.pixService.inactive(id));
+    }
+
     @ExceptionHandler({ BusinessErrorException.class})
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ResponseEntity<List<BusinessError>> handleBusinessException(BusinessErrorException ex) {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).contentType(MediaType.APPLICATION_JSON)
                 .body(ex.getErrors());
+    }
+
+    @ExceptionHandler({ NotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<BusinessError> handleNotFoundException(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_JSON)
+                .body(BusinessError.builder().errorCode(404).errorMessage("NOT_FOUND").build());
     }
 
 

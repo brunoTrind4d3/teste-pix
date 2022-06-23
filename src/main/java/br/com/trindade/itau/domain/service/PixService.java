@@ -3,11 +3,14 @@ package br.com.trindade.itau.domain.service;
 import br.com.trindade.itau.domain.entity.BusinessError;
 import br.com.trindade.itau.domain.entity.Pix;
 import br.com.trindade.itau.domain.exception.BusinessErrorException;
+import br.com.trindade.itau.domain.exception.NotFoundException;
 import br.com.trindade.itau.domain.repository.PixRepository;
 import br.com.trindade.itau.domain.service.validation.PixKeyAndValueValidationService;
 import br.com.trindade.itau.domain.service.validation.PixValidationService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,14 @@ public class PixService {
             throw new BusinessErrorException(errors);
         }
         return this.pixRepository.create(body);
+    }
+
+    public Pix inactive(String id) throws NotFoundException {
+        var result = this.pixRepository.inactive(id);
+        if(result == null){
+            throw new NotFoundException();
+        }
+        return result;
     }
 
     private void add(List<BusinessError> errors, BusinessError newError){
