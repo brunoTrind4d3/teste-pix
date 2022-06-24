@@ -3,6 +3,10 @@
 <h3>Excutando o sistema</h3>
 <p>Tenha o docker instalado na máquina ou siga instalação conforme <a target="_blank" href="https://www.docker.com/products/docker-desktop/">Docker</a></p>
 <p>Na raiz do projeto execute o comando: <b>docker-compose up -d --build</b></p>
+
+<h6>Alternativa de execução</h6>
+<p>Faça o clone da aplicação, abra na sua IDE e execute o arquivo ItauApplication</p>
+
 <h3>Documentação da API</h3>
 <p>Swagger: http://localhost:8080/swagger-ui/index.html#/ </p>
 
