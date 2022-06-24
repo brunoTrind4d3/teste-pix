@@ -1,0 +1,10 @@
+version: '3'
+services:
+  itau-application:
+    container_name: itau-application
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: itau-application:latest
+    ports:
+      - "8080:8080"
