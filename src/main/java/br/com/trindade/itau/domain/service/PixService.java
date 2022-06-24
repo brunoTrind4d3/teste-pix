@@ -2,6 +2,7 @@ package br.com.trindade.itau.domain.service;
 
 import br.com.trindade.itau.domain.entity.BusinessError;
 import br.com.trindade.itau.domain.entity.Pix;
+import br.com.trindade.itau.domain.entity.PixUpdate;
 import br.com.trindade.itau.domain.entity.SearchFilters;
 import br.com.trindade.itau.domain.exception.BusinessErrorException;
 import br.com.trindade.itau.domain.exception.NotFoundException;
@@ -39,6 +40,14 @@ public class PixService {
 
     public Pix inactive(String id) throws NotFoundException {
         var result = this.pixRepository.inactive(id);
+        if(result == null){
+            throw new NotFoundException();
+        }
+        return result;
+    }
+
+    public Pix update(String id, PixUpdate pix) throws NotFoundException {
+        var result = this.pixRepository.update(id, pix);
         if(result == null){
             throw new NotFoundException();
         }

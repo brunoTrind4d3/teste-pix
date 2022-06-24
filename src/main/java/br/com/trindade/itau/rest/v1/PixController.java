@@ -8,8 +8,10 @@ import br.com.trindade.itau.domain.exception.NotFoundException;
 import br.com.trindade.itau.domain.service.PixService;
 import br.com.trindade.itau.rest.v1.mapper.PixMapper;
 import br.com.trindade.itau.rest.v1.mapper.PixResponseMapper;
+import br.com.trindade.itau.rest.v1.mapper.PixUpdateMapper;
 import br.com.trindade.itau.rest.v1.model.CreatePixModel;
 import br.com.trindade.itau.rest.v1.model.PixResponse;
+import br.com.trindade.itau.rest.v1.model.UpdatePixModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,8 +36,12 @@ public class PixController {
         return PixResponseMapper.from(this.pixService.create(PixMapper.from(body)));
     }
 
+    @PutMapping("/{id}")
+    public PixResponse update(@PathVariable String id, @Valid @RequestBody UpdatePixModel body) throws NotFoundException {
+        return PixResponseMapper.from(this.pixService.update(id, PixUpdateMapper.from(body)));
+    }
     @DeleteMapping("/inactive/{id}")
-    public PixResponse inactive(@Valid @PathVariable String id) throws NotFoundException {
+    public PixResponse inactive(@PathVariable String id) throws NotFoundException {
         return PixResponseMapper.from(this.pixService.inactive(id));
     }
 
