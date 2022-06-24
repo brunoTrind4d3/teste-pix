@@ -12,4 +12,5 @@ public interface PixRepositoryMongo extends MongoRepository<Pix, String> {
     Optional<Pix> findByKeyValue(String keyValue);
     @Query("{taxId: ?0}")
     List<Pix> findAllByTaxId(String taxId);
+
 }

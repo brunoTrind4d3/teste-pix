@@ -4,6 +4,8 @@ import br.com.trindade.itau.domain.entity.Pix;
 import br.com.trindade.itau.rest.v1.model.PixResponse;
 import lombok.experimental.UtilityClass;
 
+import java.util.List;
+
 @UtilityClass
 public class PixResponseMapper {
 
@@ -27,5 +29,6 @@ public class PixResponseMapper {
                 .taxId(model.getTaxId())
                 .build();
     }
+
 
 }

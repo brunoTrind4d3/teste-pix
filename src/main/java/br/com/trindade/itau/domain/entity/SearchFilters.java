@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchFilters {
 
-    private PersonType personType;
-    private AccountType accountType;
+    private String id;
     private PixKeyType keyType;
-    private String keyValue;
+    private String agency;
+    private String account;
+    private String name;
 
 }
